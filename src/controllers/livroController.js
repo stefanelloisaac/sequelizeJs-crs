@@ -186,7 +186,11 @@ const getStatusLivro = async (req, res) => {
           disponivel: false,
         };
         let emprestimo = livro.getEmprestimos({
-          where: { devolucao: { [Op.is]: null } },
+          where: {
+            devolucao: {
+              [Op.is]: null,
+            },
+          },
         });
         json.disponivel = emprestimo.length ? false : true; //rever
         return json;
