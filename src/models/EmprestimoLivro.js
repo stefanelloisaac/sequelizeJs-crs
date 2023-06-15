@@ -20,26 +20,24 @@ const EmprestimoLivro = sequelize.define(
   }
 );
 
-EmprestimoLivro.belongsTo(Livro, {
-  as: "livro",
-  onDelete: "NO ACTION",
-  onUpdate: "NO ACTION",
+Emprestimo.belongsToMany(Livro, {
+  through: EmprestimoLivro, //tabela/modelo associativa
+  as: 'livros', //'Livros'
   foreignKey: {
-    name: "idLivro",
-    field: "id_livro",
-    allowNull: false,
-  },
+    name: 'idEmprestimo',
+    field: 'id_emprestimo',
+    allowNull: false
+  }
 });
 
-EmprestimoLivro.belongsTo(Emprestimo, {
-  as: "emprestimo",
-  onDelete: "NO ACTION",
-  onUpdate: "NO ACTION",
+Livro.belongsToMany(Emprestimo, {
+  through: EmprestimoLivro,
+  as: 'emprestimos',
   foreignKey: {
-    name: "idEmprestimo",
-    field: "id_emprestimo",
-    allowNull: false,
-  },
+    name: 'idLivro',
+    field: 'id_livro',
+    allowNull: false
+  }
 });
 
 export default EmprestimoLivro;
