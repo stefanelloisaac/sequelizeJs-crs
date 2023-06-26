@@ -1,7 +1,7 @@
 import controller from "../controllers/livroController";
 
 export default (app) => {
-  app.delete("/livros/deletar", controller.destroy);
+  app.delete("/livros/deletar/:id", controller.destroy);
   app.get("/livros", controller.get);
   app.get("/livros/disponiveis", controller.getLivrosDisponiveis);
   app.get("/livros/status", controller.getStatusLivro);
